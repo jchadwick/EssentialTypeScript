@@ -1,9 +1,16 @@
-var array = [
-    "Pick up drycleaning", 
-    "Clean Batcave", 
-    "Save Gotham"
-];
+var container = document.getElementById('container');
 
-for (var value of array) {
-    console.log(value);
+function Counter(el) {
+
+    this.count = 0;
+
+    el.innerHTML = this.count;
+
+    el.addEventListener('click', 
+        function () {
+            this.count += 1;
+            el.innerHTML = this.count;
+        })
 }
+
+new Counter(container);
