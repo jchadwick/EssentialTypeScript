@@ -7,10 +7,9 @@ function Counter(el) {
     el.innerHTML = this.count;
 
     el.addEventListener('click', 
-        function () {
-            this.count += 1;
-            el.innerHTML = this.count;
-        })
+        (event) => el.innerHTML = (this.count += 1))
 }
 
 new Counter(container);
+
+var filtered = [1,2,3].filter(x => x > 0)
