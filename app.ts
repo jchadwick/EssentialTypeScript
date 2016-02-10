@@ -1,6 +1,6 @@
 var container = document.getElementById('container');
 
-function countdown(initial, final, interval) {
+function countdown(initial, final = 0, interval = 1) {
 
     var current = initial;
 
@@ -10,3 +10,5 @@ function countdown(initial, final, interval) {
     }
 
 }
+
+countdown(10, 5, 2)
