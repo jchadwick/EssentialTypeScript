@@ -1,2 +1,12 @@
-var todo: string = "Pick up drycleaning";
-var todo2: string = "Clean Batcave";
+var container = document.getElementById('container');
+
+function countdown(initial, final, interval) {
+
+    var current = initial;
+
+    while (current > final) {
+        container.innerHTML = current;
+        current -= interval;
+    }
+
+}
