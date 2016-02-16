@@ -10,7 +10,15 @@ TodoService.prototype.getAll = function() {
 
 */
 
-
+class TodoService {
+    
+    constructor(private todos: Todo[]) {
+    }
+    
+    getAll() {
+        return this.todos;
+    }
+}
 
 interface Todo {
     name: string;
