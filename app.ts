@@ -1,8 +1,10 @@
-var todo: { name: string };
-
-todo = { age: 41 }
-
-function totalLength(x: { length: number }, y: { length: number }): number {
-    var total: number = x.length + y.length;
-    return total;
+function TodoService() {
+    this.todos = [];
 }
+
+TodoService.prototype.getAll = function() {
+    return this.todos;
+}
+
+var service = new TodoService();
+service.getAll()
