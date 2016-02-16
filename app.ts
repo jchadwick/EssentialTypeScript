@@ -43,3 +43,4 @@ class CompleteTodoStateChanger extends TodoStateChanger {
     }
     
 }
+
