@@ -1,15 +1,3 @@
-/* From the last video...
-
-function TodoService() {
-    this.todos = [];
-}
-
-TodoService.prototype.getAll = function() {
-    return this.todos;
-}
-
-*/
-
 class TodoService {
     
     constructor(private todos: Todo[]) {
