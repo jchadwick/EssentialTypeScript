@@ -6,6 +6,7 @@ interface ITodoService {
 }
 
 interface Todo {
+    id: number;
     name: string;
     state: TodoState;
 }
