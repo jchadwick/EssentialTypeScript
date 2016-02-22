@@ -1,8 +1,4 @@
-interface IIdGenerator {
-    nextId: number;
-}
-
-class TodoService implements ITodoService, IIdGenerator {
+class TodoService implements ITodoService {
 
     private static _lastId: number = 0;
 
