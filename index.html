@@ -9,9 +9,11 @@
 <body>
     <div id="container" class="container">
     </div>
-    <script type="text/javascript" src="model.js"></script>
-    <script type="text/javascript" src="DataAccess.js"></script>
-    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.22/system.js"></script>
+    <script type="text/javascript">
+        System.defaultJSExtensions = true;
+        System.import('app')
+    </script>
 </body>
 
 </html>
