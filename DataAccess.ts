@@ -1,3 +1,6 @@
+import Model = require('./model');
+import Todo = Model.Todo;
+
 let _lastId: number = 0;
 
 function generateTodoId() {
