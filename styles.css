@@ -1,0 +1,23 @@
+.text-strikethrough {
+    text-decoration: line-through;
+}
+
+.text-giant {
+    font-size: 200%;
+}
+
+.completed-indicator {
+    color: lawngreen
+}
+
+.todo-item .completed {
+    display: none;
+}
+
+.todo-item.completed .completed {
+    display: block;
+}
+
+.todo-item.completed .incomplete {
+    display: none;
+}
