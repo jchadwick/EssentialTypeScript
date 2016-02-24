@@ -34,3 +34,6 @@ node_modules
 .vscode
 
 *.js
+*.d.ts
+
+typings/
