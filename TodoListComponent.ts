@@ -1,5 +1,3 @@
-declare var $: any;
-
 class TodoListComponent {
     
     private $el: JQuery;
