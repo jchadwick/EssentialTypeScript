@@ -1,10 +1,12 @@
-var TodoListComponent = (function () {
+class TodoListComponent {
     
-    function TodoListComponent(el) {
+    private $el: jQuery;
+    
+    constructor(el: HTMLElement) {
         this.$el = $(el);
     }
 
-    TodoListComponent.prototype.render = function (todos) {
+    render(todos) {
 
         this.$el.html('');
         
@@ -20,11 +22,11 @@ var TodoListComponent = (function () {
         
         for(var index in todos) {
             var todo = todos[index];
-            renderTodo(todo).appendTo(this.$el);
+            this.renderTodo(todo).appendTo(this.$el);
         }
-    };
+    }
 
-    function renderTodo(todo) {
+    private renderTodo(todo) {
         return $(
             "<div class='todo-item list-group-item "+ (todo.state == 2 ? 'completed' : '') +"'>" +
             "   <div class='row'>" +
@@ -45,7 +47,4 @@ var TodoListComponent = (function () {
             this.dispatchEvent(event);
         });
     }
-
-    return TodoListComponent;
-})();
-
+}
