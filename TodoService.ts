@@ -1,14 +1,3 @@
-interface Todo {
-    id: number;
-    name: string;
-    state: TodoState;
-}
-
-enum TodoState {
-    Active = 1,
-    Complete = 2
-}
-
 interface ITodoService {
     add(todo: Todo): Todo;
     add(todo: string): Todo;
