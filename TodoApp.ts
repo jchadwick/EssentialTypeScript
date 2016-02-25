@@ -49,7 +49,7 @@ export class TodoApp {
         });
 
         todoListEl.addEventListener('todo-toggle', function(evnt) {
-            var todoId = evnt.detail.todoId;
+            var todoId = evnt.details.todoId;
             _this.todoService.toggle(todoId);
             _this.renderTodos();
         });
