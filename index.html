@@ -57,17 +57,18 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.1.min.js"></script>
-    <script type="text/javascript" src="Model.js"></script>
-    <script type="text/javascript" src="TodoListComponent.js"></script>
-    <script type="text/javascript" src="TodoService.js"></script>
-    <script type="text/javascript" src="TodoApp.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.22/system.js"></script>
     <script type="text/javascript">
-        new TodoApp(document, [
-            'Pick up drycleaning',
-            'Clean Batcave',
-            'Save Gotham'
-        ]);
+        System.defaultJSExtensions = true;
+        
+        System.import('TodoApp').then(function(module) {
+            
+            new module.TodoApp(document, [
+                'Pick up drycleaning',
+                'Clean Batcave',
+                'Save Gotham'
+            ]);
+        })
     </script>
 </body>
 </html>

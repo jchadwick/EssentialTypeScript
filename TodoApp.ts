@@ -1,4 +1,8 @@
-class TodoApp {
+import { Todo, TodoState } from './Model';
+import TodoService, { ITodoService } from './TodoService';
+import TodoListComponent from './TodoListComponent';
+
+export class TodoApp {
     
     private todoService: ITodoService;
     private todoList: TodoListComponent;
