@@ -22,11 +22,11 @@ function clone<T>(src: T): T {
 
 
 export default class TodoService implements ITodoService {
-    
+
     private todos: Todo[] = [];
 
     constructor(todos: string[]) {
-        if(todos) {
+        if (todos) {
             todos.forEach(todo => this.add(todo));
         }
     }
@@ -34,6 +34,7 @@ export default class TodoService implements ITodoService {
     // Accepts a todo name or todo object
     add(todo: Todo): Todo
     add(todo: string): Todo
+    @log
     add(input): Todo {
 
         var todo: Todo = {
@@ -42,10 +43,10 @@ export default class TodoService implements ITodoService {
             state: TodoState.Active
         };
 
-        if(typeof input === 'string') {
+        if (typeof input === 'string') {
             todo.name = input;
-        } 
-        else if(typeof input.name === 'string') {
+        }
+        else if (typeof input.name === 'string') {
             todo.name = input.name;
         } else {
             throw 'Invalid Todo name!';
@@ -58,12 +59,12 @@ export default class TodoService implements ITodoService {
 
 
     clearCompleted(): void {
-       
+
         this.todos = this.todos.filter(
             x => x.state == TodoState.Active
         );
     }
-    
+
 
     getAll(): Todo[] {
         return clone(this.todos);
@@ -74,18 +75,18 @@ export default class TodoService implements ITodoService {
         var todo = this._find(todoId);
         return clone(todo);
     };
-    
+
     toggle(todoId: number): void {
 
         var todo = this._find(todoId);
-        
-        if(!todo) return;
-        
-        switch(todo.state) {
+
+        if (!todo) return;
+
+        switch (todo.state) {
             case TodoState.Active:
                 todo.state = TodoState.Complete;
                 break;
-                
+
             case TodoState.Complete:
                 todo.state = TodoState.Active;
                 break;
@@ -96,11 +97,28 @@ export default class TodoService implements ITodoService {
         var filtered = this.todos.filter(
             x => x.id == todoId
         );
-        
+
         if (filtered.length) {
             return filtered[0];
         }
-        
+
         return null;
     }
 }
+
+function log(target: Object, methodName: string, descriptor: TypedPropertyDescriptor<Function>) {
+
+    let originalMethod = descriptor.value;
+
+    descriptor.value = function(...args) {
+
+        console.log(`${methodName}(${JSON.stringify(args)})`)
+
+        let returnValue = originalMethod.apply(this, args);
+
+        console.log(`${methodName}(${JSON.stringify(args)}) => ${JSON.stringify(returnValue)}`)
+
+        return returnValue;
+    }
+}
+
