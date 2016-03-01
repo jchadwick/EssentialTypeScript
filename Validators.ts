@@ -50,3 +50,4 @@ export function validatable(target: Function) {
     target.prototype.validate = validate;
     
 }
+

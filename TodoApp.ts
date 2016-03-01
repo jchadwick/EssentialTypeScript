@@ -14,7 +14,12 @@ export class TodoApp {
     }
 
     addTodo(todoName) {
-        this.todoService.add(todoName);
+        try {
+            this.todoService.add(todoName);
+        } catch(x) {
+            console.error(x)
+        }
+        
         this.renderTodos();
     }
 
