@@ -6,6 +6,7 @@ export class ValidatableTodo implements Todo {
     id: number;
 
     @required
+    @regex(`^[a-zA-Z ]*$`)
     name: string;
 
     state: TodoState;
@@ -34,46 +35,71 @@ export function validate(): IValidationResult[] {
         errors: IValidationResult[] = [];
 
     for (let validator of validators) {
-        
+
         let result = validator(this);
-        
-        if(!result.isValid) {
+
+        if (!result.isValid) {
             errors.push(result);
         }
-        
+
     }
-    
+
     return errors;
 }
 
 export function validatable(target: Function) {
-    
+
     target.prototype.validate = validate;
-    
+
 }
 
 export function required(target: Object, propertyName: string) {
-    
+
     let validatable = <{ _validators: IValidator[] }>target,
         validators = (validatable._validators || (validatable._validators = []));
-        
-    validators.push(function (instance) {
-        
+
+    validators.push(function(instance) {
+
         let propertyValue = instance[propertyName],
             isValid = propertyValue != undefined;
-            
-        if( typeof propertyValue === 'string' ) {
+
+        if (typeof propertyValue === 'string') {
             isValid = propertyValue && propertyValue.length > 0;
         }
-        
+
         return {
             isValid,
             message: `${propertyName} is required`,
             property: propertyName
         }
-        
+
     })
-    
+
 }
 
+export function regex(pattern: string) {
+    
+    let expression = new RegExp(pattern);
+
+    return function regex(target: Object, propertyName: string) {
+
+        let validatable = <{ _validators: IValidator[] }>target,
+            validators = (validatable._validators || (validatable._validators = []));
+
+        validators.push(function(instance) {
+
+            let propertyValue = instance[propertyName],
+                isValid = expression.test(propertyValue);
+
+            return {
+                isValid,
+                message: `${propertyName} does not match ${expression}`,
+                property: propertyName
+            }
+
+        })
+        
+    };
+
+}
 
