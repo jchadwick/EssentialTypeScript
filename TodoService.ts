@@ -122,3 +122,4 @@ function log(target: Object, methodName: string, descriptor: TypedPropertyDescri
     }
 }
 
+
