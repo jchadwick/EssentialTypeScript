@@ -5,6 +5,7 @@ export class ValidatableTodo implements Todo {
 
     id: number;
 
+    @required
     name: string;
 
     state: TodoState;
@@ -51,3 +52,26 @@ export function validatable(target: Function) {
     
 }
 
+export function required(target: Object, propertyName: string) {
+    
+    let validatable = <{ _validators: IValidator[] }>target,
+        validators = (validatable._validators || (validatable._validators = []));
+        
+    validators.push(function (instance) {
+        
+        let propertyValue = instance[propertyName],
+            isValid = propertyValue != undefined;
+            
+        if( typeof propertyValue === 'string' ) {
+            isValid = propertyValue && propertyValue.length > 0;
+        }
+        
+        return {
+            isValid,
+            message: `${propertyName} is required`,
+            property: propertyName
+        }
+        
+    })
+    
+}
