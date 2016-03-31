@@ -3,11 +3,11 @@ interface jQuery {
     version: number;
 }
 
-
-var $ = <jQuery>function(selector: string) {
+var $ = <jQuery>function(selector) {
     // Find DOM element
 }
 
-$.version = 1.18
+$.version = 1.12;
 
-var container = $('#container');
+var element = $('#container');
+element.

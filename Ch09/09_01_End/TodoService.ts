@@ -36,6 +36,8 @@ export default class TodoService implements ITodoService {
     add(todo: string): Todo
     @log
     add(input): Todo {
+        
+        console.log(`add(${JSON.stringify(input)})`)
 
         var todo: Todo = {
             id: generateTodoId(),
@@ -53,6 +55,8 @@ export default class TodoService implements ITodoService {
         }
 
         this.todos.push(todo);
+        
+        console.log(`add(${JSON.stringify(input)}) => ${JSON.stringify(todo)}`)
 
         return todo;
     };

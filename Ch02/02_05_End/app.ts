@@ -5,5 +5,5 @@ var array = [
 ];
 
 for (var value of array) {
-    console.log(value);
+    console.log('${value}');
 }
